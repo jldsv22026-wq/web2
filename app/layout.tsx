@@ -29,13 +29,16 @@ export default async function RootLayout({
     findGalleryImageByFilename(galleryImages, "header-logo.png");
   const footerLogo = findGalleryImageByFilename(galleryImages, "hero-logo.png");
 
+  const headerLogoUrl = headerLogo?.url ?? "/images/header-logo-text.png";
+  const footerLogoUrl = footerLogo?.url ?? "/images/hero-logo.png";
+
   return (
     <html lang="en">
       <body className={lato.variable}>
-        <Header logoUrl={headerLogo?.url} logoAlt={headerLogo?.alt || "Janet Lee Design Studio"} />
+        <Header logoUrl={headerLogoUrl} logoAlt={headerLogo?.alt || "Janet Lee Design Studio"} />
         <SmoothSectionScroll />
         {children}
-        <Footer logoUrl={footerLogo?.url} logoAlt={footerLogo?.alt || "Janet Lee Design Studio"} />
+        <Footer logoUrl={footerLogoUrl} logoAlt={footerLogo?.alt || "Janet Lee Design Studio"} />
       </body>
     </html>
   );

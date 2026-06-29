@@ -37,7 +37,7 @@ export function Footer({ logoUrl, logoAlt = "Janet Lee Design Studio" }: FooterP
       <div className="footer-container">
         <div className="footer-logo-panel">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoUrl || "/images/jlds_logo.svg"} alt={logoAlt} className="footer-logo" />
+          <img src={logoUrl || "/images/hero-logo.png"} alt={logoAlt} className="footer-logo" />
         </div>
 
         <div className="footer-contact-panel">

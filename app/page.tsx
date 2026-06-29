@@ -11,25 +11,25 @@ export default async function Home() {
       key: "residential",
       label: "RESIDENTIAL",
       image: findGalleryImageByFilename(galleryImages, "residential-thumb.webp") ?? null,
-      fallback: "/images/residential-img.webp"
+      fallback: "/images/residential-thumb.webp"
     },
     {
       key: "commercial",
       label: "COMMERCIAL",
       image: findGalleryImageByFilename(galleryImages, "comm-thumb.webp") ?? null,
-      fallback: "/images/commercial-img.webp"
+      fallback: "/images/comm-thumb.webp"
     },
     {
       key: "renovation",
       label: "RENOVATION",
       image: findGalleryImageByFilename(galleryImages, "renovation-thumb.webp") ?? null,
-      fallback: "/images/condominium-img.webp"
+      fallback: "/images/renovation-thumb.webp"
     },
     {
       key: "pop-ups",
       label: "POP-UPS",
       image: findGalleryImageByFilename(galleryImages, "pop-ups-thumb.webp") ?? null,
-      fallback: "/images/realestate-img.webp"
+      fallback: "/images/pop-ups-thumb.webp"
     }
   ];
 
@@ -38,13 +38,13 @@ export default async function Home() {
       <section
         className="hero-section"
         style={{
-          backgroundImage: `url("${heroBackground?.url || "/images/section_bg-opt.webp"}")`
+          backgroundImage: `url("${heroBackground?.url || "/images/hero-section-bg.webp"}")`
         }}
       >
         <div className="hero-logo-lockup">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={heroLogo?.url || "/images/jlds_logo.svg"}
+            src={heroLogo?.url || "/images/hero-logo.png"}
             alt={heroLogo?.alt || "Janet Lee Design Studio"}
             className="hero-logo-image"
           />

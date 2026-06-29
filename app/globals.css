@@ -878,12 +878,21 @@ body:has(.projects-page) .menu-toggle-premium {
   padding: 0 18px;
   border: 0;
   border-radius: 0;
-  color: rgba(235, 229, 218, 0.82);
+  color: #918780;
   background: #3a3a3a;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+}
+
+.footer-form select {
+  padding-right: 58px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='24' viewBox='0 0 42 24'%3E%3Cpath fill='%23232428' d='M21 24 0 0h42L21 24Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 37px 21px;
 }
 
 .footer-form textarea {
@@ -894,7 +903,7 @@ body:has(.projects-page) .menu-toggle-premium {
 
 .footer-form input::placeholder,
 .footer-form textarea::placeholder {
-  color: rgba(235, 229, 218, 0.72);
+  color: #918780;
   opacity: 1;
 }
 

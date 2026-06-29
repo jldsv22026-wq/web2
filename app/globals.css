@@ -787,7 +787,7 @@ body:has(.projects-page) .menu-toggle-premium {
 
 .site-footer {
   min-height: 516px;
-  background: var(--charcoal);
+  background: #000000;
   padding: 116px 60px 74px;
   border-top: 1px solid rgba(229, 199, 150, 0.18);
   scroll-snap-align: start;
@@ -879,7 +879,7 @@ body:has(.projects-page) .menu-toggle-premium {
   border: 0;
   border-radius: 0;
   color: rgba(235, 229, 218, 0.82);
-  background: #000000;
+  background: #3a3a3a;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.2em;
@@ -901,8 +901,8 @@ body:has(.projects-page) .menu-toggle-premium {
 .footer-form .btn-send {
   min-height: 50px;
   padding: 0 22px;
-  border: 0;
-  background: #746547;
+  border: 1px solid #918780;
+  background: #000000;
   color: var(--paper);
   font-size: 14px;
   font-weight: 700;

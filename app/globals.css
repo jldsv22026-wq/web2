@@ -645,7 +645,7 @@ body:has(.projects-page) .menu-toggle-premium {
 
 .company-section__inner {
   display: grid;
-  grid-template-columns: minmax(380px, 430px) minmax(0, 900px);
+  grid-template-columns: minmax(380px, 455px) minmax(0, 900px);
   gap: clamp(42px, 4vw, 72px);
   align-items: start;
   width: min(1410px, calc(100% - 220px));
@@ -657,7 +657,7 @@ body:has(.projects-page) .menu-toggle-premium {
   display: grid;
   justify-items: start;
   gap: 28px;
-  max-width: 430px;
+  max-width: 455px;
 }
 
 .company-section__copy {

@@ -63,7 +63,7 @@ export default async function Home() {
 
       <section id="company" className="company-section">
         <div className="company-section__inner">
-          <div className="company-section__content">
+          <div className="company-section__content reveal-on-scroll">
             <div className="company-section__copy">
               <p>
                 Our design philosophy is inspired by the way water flows naturally to create rivers. Just as
@@ -108,7 +108,7 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="company-section__image-wrap">
+          <div className="company-section__image-wrap reveal-on-scroll reveal-delay-1">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={companyImage?.url || "/images/ladies-pic.webp"}

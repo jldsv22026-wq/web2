@@ -13,8 +13,30 @@ export function SmoothSectionScroll() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll<HTMLElement>(".reveal-on-scroll").forEach((element) => {
+        element.classList.add("is-revealed");
+      });
       return;
     }
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "0px 0px -14% 0px",
+        threshold: 0.18
+      }
+    );
+
+    document.querySelectorAll<HTMLElement>(".reveal-on-scroll").forEach((element) => {
+      revealObserver.observe(element);
+    });
 
     const getSections = () =>
       SECTION_SELECTORS.map((selector) => document.querySelector<HTMLElement>(selector)).filter(
@@ -97,6 +119,7 @@ export function SmoothSectionScroll() {
     window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
+      revealObserver.disconnect();
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);

@@ -35,12 +35,12 @@ export function Footer({ logoUrl, logoAlt = "Janet Lee Design Studio" }: FooterP
   return (
     <footer id="colophon" className="site-footer">
       <div className="footer-container">
-        <div className="footer-logo-panel">
+        <div className="footer-logo-panel reveal-on-scroll">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={logoUrl || "/images/hero-logo.png"} alt={logoAlt} className="footer-logo" />
         </div>
 
-        <div className="footer-contact-panel">
+        <div className="footer-contact-panel reveal-on-scroll reveal-delay-1">
           <nav className="social-links" aria-label="Social links">
             <a href="#" aria-label="LinkedIn">
               <LinkedInIcon />

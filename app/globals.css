@@ -8,8 +8,8 @@
   --muted: #d8d0c2;
   --gold: #e5c796;
   --line: rgba(229, 199, 150, 0.36);
-  --site-header-height: 116px;
-  --header-logo-width: 454px;
+  --site-header-height: 94px;
+  --header-logo-width: 318px;
   --header-logo-height: 76px;
   --footer-logo-size: 300px;
 }
@@ -999,7 +999,7 @@ body:has(.projects-page) .menu-toggle-premium {
   .floating-header-logo {
     top: 20px;
     left: 24px;
-    width: min(320px, calc(100vw - 112px));
+    width: min(var(--header-logo-width), calc(100vw - 112px));
     max-width: none;
     height: auto;
   }

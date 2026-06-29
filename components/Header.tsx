@@ -19,7 +19,7 @@ type HeaderProps = {
 export function Header({ logoUrl, logoAlt = "Janet Lee Design Studio" }: HeaderProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [showHeader, setShowHeader] = useState(pathname !== "/");
+  const [showHeader, setShowHeader] = useState(false);
 
   useEffect(() => {
     const heroSection = document.querySelector<HTMLElement>(".hero-section");

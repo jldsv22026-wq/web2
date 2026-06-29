@@ -88,22 +88,12 @@ body:has(.projects-page) .site-header {
 
 .header-inner {
   position: fixed;
-  top: 38px;
-  right: 42px;
+  top: 0;
+  right: 0;
   z-index: 101;
-  width: 42px;
-  height: 36px;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-14px);
-  transition: opacity 360ms ease, transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.site-header--visible .header-inner,
-body:has(.projects-page) .header-inner {
-  opacity: 1;
+  width: 0;
+  height: 0;
   pointer-events: auto;
-  transform: translateY(0);
 }
 
 .floating-header-logo {
@@ -180,7 +170,7 @@ body:has(.projects-page) .custom-logo-svg {
 .menu-toggle-premium {
   display: grid;
   position: fixed;
-  top: 28px;
+  top: 38px;
   right: 38px;
   z-index: 102;
   width: 54px;
@@ -1026,8 +1016,8 @@ body:has(.projects-page) .menu-toggle-premium {
   }
 
   .header-inner {
-    top: 24px;
-    right: 24px;
+    top: 0;
+    right: 0;
   }
 
   .floating-header-logo {

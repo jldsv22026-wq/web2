@@ -371,6 +371,11 @@ body:has(.projects-page) .menu-toggle-premium {
   transition-delay: 140ms;
 }
 
+.site-header--visible .menu-toggle--active,
+body:has(.projects-page) .menu-toggle--active {
+  top: calc((var(--site-header-height) - 54px) / 2);
+}
+
 .hero-section {
   display: grid;
   place-items: center;

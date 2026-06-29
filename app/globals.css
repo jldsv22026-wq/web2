@@ -645,11 +645,12 @@ body:has(.projects-page) .menu-toggle-premium {
 
 .company-section__inner {
   display: grid;
-  grid-template-columns: minmax(380px, 430px) minmax(0, 991px);
-  gap: clamp(68px, 6.2vw, 104px);
+  grid-template-columns: minmax(380px, 430px) minmax(0, 900px);
+  gap: clamp(42px, 4vw, 72px);
   align-items: start;
-  width: min(1525px, calc(100% - 108px));
-  margin: 0 auto;
+  width: min(1410px, calc(100% - 220px));
+  margin-right: auto;
+  margin-left: clamp(132px, 9vw, 174px);
 }
 
 .company-section__content {
@@ -725,6 +726,7 @@ body:has(.projects-page) .menu-toggle-premium {
 
 .company-section__image-wrap {
   width: 100%;
+  max-width: 900px;
   padding-top: 40px;
   justify-self: end;
 }

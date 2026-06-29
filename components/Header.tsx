@@ -30,7 +30,7 @@ export function Header({ logoUrl, logoAlt = "Janet Lee Design Studio" }: HeaderP
     }
 
     const updateHeaderState = () => {
-      const headerRevealPoint = heroSection.offsetTop + heroSection.offsetHeight;
+      const headerRevealPoint = heroSection.offsetTop + heroSection.offsetHeight - 8;
       setShowHeader(window.scrollY >= headerRevealPoint);
     };
 

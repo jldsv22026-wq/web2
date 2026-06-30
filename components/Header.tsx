@@ -7,8 +7,9 @@ import { MouseEvent, useEffect, useState } from "react";
 const navItems = [
   { label: "HOME", href: "/#" },
   { label: "PROJECTS", href: "/#projects" },
-  { label: "COMPANY", href: "/#company" },
-  { label: "CONTACT", href: "/#colophon" }
+  { label: "PRESS", href: "/projects" },
+  { label: "ABOUT US", href: "/#company" },
+  { label: "CONTACT US", href: "/#colophon" }
 ];
 
 type HeaderProps = {

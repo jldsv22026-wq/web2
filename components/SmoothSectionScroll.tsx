@@ -43,7 +43,7 @@ export function SmoothSectionScroll() {
         const easedProjectsReveal = 1 - Math.pow(1 - projectsReveal, 2);
 
         projectGrid?.style.setProperty("--projects-reveal-opacity", (0.12 + easedProjectsReveal * 0.88).toString());
-        projectGrid?.style.setProperty("--projects-reveal-y", `${(1 - easedProjectsReveal) * 72}px`);
+        projectGrid?.style.setProperty("--projects-reveal-y", `${(1 - easedProjectsReveal) * -72}px`);
         header?.style.setProperty("--header-progress", projectsReveal.toString());
         header?.style.setProperty("--header-border-alpha", (projectsReveal * 0.16).toString());
         header?.style.setProperty("--header-shadow-alpha", (projectsReveal * 0.18).toString());

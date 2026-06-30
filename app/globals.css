@@ -532,7 +532,7 @@ body:has(.projects-page) .menu-toggle--active {
   min-height: 100vh;
   width: 100%;
   padding: 0;
-  background: #232428;
+  background: transparent;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
@@ -547,7 +547,7 @@ body:has(.projects-page) .menu-toggle--active {
 
 .project-category-grid {
   --projects-reveal-opacity: 0.12;
-  --projects-reveal-y: 72px;
+  --projects-reveal-y: -72px;
   min-height: calc(100vh + var(--site-header-height));
 }
 

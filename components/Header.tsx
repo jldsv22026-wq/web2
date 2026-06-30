@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 
 const navItems = [
   { label: "HOME", href: "/#" },
@@ -20,6 +20,16 @@ export function Header({ logoUrl, logoAlt = "Janet Lee Design Studio" }: HeaderP
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
+
+  const scrollHome = (event: MouseEvent<HTMLAnchorElement>) => {
+    setIsOpen(false);
+
+    if (pathname === "/") {
+      event.preventDefault();
+      window.history.replaceState(null, "", "/");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     const heroSection = document.querySelector<HTMLElement>(".hero-section");
@@ -54,7 +64,7 @@ export function Header({ logoUrl, logoAlt = "Janet Lee Design Studio" }: HeaderP
   return (
     <header className={`site-header ${showHeader ? "site-header--visible" : ""}`} id="masthead">
       {logoUrl ? (
-        <Link href="/" className="floating-header-logo" aria-label="Janet Lee Design Studio home">
+        <Link href="/" className="floating-header-logo" aria-label="Janet Lee Design Studio home" onClick={scrollHome}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={logoUrl} alt={logoAlt} />
         </Link>
@@ -78,7 +88,7 @@ export function Header({ logoUrl, logoAlt = "Janet Lee Design Studio" }: HeaderP
             <ul className="menu">
               {navItems.map((item) => (
                 <li className="menu-item" key={item.label}>
-                  <Link href={item.href} onClick={() => setIsOpen(false)}>
+                  <Link href={item.href} onClick={item.label === "HOME" ? scrollHome : () => setIsOpen(false)}>
                     {item.label}
                   </Link>
                 </li>

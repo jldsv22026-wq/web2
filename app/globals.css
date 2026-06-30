@@ -191,6 +191,7 @@ body:has(.projects-page) .menu-toggle-premium {
 
 .menu-toggle-premium::before,
 .menu-toggle-premium::after {
+  display: none;
   position: absolute;
   inset: 5px;
   content: "";

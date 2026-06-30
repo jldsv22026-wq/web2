@@ -301,7 +301,7 @@ body:has(.projects-page) .menu-toggle-premium {
   position: fixed;
   inset: 0 0 auto auto !important;
   z-index: 99;
-  width: min(360px, calc(100vw - 80px));
+  width: min(300px, calc(100vw - 80px));
   height: 360px !important;
   min-height: 0 !important;
   max-height: calc(100vh - 72px);
@@ -328,7 +328,7 @@ body:has(.projects-page) .menu-toggle-premium {
   display: grid;
   min-height: 100%;
   align-content: center;
-  padding: 70px 48px 42px;
+  padding: 70px 34px 42px 28px;
 }
 
 .side-nav .menu {
@@ -546,7 +546,7 @@ body:has(.projects-page) .menu-toggle--active {
 }
 
 .project-category-grid {
-  --projects-reveal-opacity: 0.12;
+  --projects-reveal-opacity: 0;
   --projects-reveal-y: -72px;
   min-height: calc(100vh + var(--site-header-height));
 }
@@ -1066,13 +1066,13 @@ body:has(.projects-page) .menu-toggle--active {
 
   .side-nav {
     inset: 0 0 auto auto !important;
-    width: min(320px, calc(100vw - 56px));
+    width: min(280px, calc(100vw - 56px));
     height: 330px !important;
     min-height: 0 !important;
   }
 
   .side-nav-inner {
-    padding: 64px 30px 38px;
+    padding: 64px 24px 38px 22px;
   }
 
   .side-nav a {

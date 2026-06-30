@@ -1,3 +1,5 @@
+import { FooterContactForm } from "@/components/FooterContactForm";
+
 type FooterProps = {
   logoUrl?: string;
   logoAlt?: string;
@@ -55,28 +57,7 @@ export function Footer({ logoUrl, logoAlt = "Janet Lee Design Studio" }: FooterP
 
           <p className="form-intro">We&apos;d love to collaborate with you! Drop us a line.</p>
 
-          <form className="footer-form">
-            <div className="form-grid">
-              <div className="form-left">
-                <select name="inquiry_type" defaultValue="" required>
-                  <option value="" disabled>
-                    GENERAL INQUIRY
-                  </option>
-                  <option value="GENERAL INQUIRY">GENERAL INQUIRY</option>
-                  <option value="PARTNERS INQUIRY">PARTNERS INQUIRY</option>
-                  <option value="CAREERS INQUIRY">CAREERS INQUIRY</option>
-                </select>
-                <input type="text" name="full_name" placeholder="FULL NAME / COMPANY NAME" required />
-                <input type="email" name="email_address" placeholder="EMAIL ADDRESS" required />
-              </div>
-              <div className="form-right">
-                <textarea name="message" placeholder="MESSAGE" required />
-                <button type="submit" className="btn-send">
-                  SEND
-                </button>
-              </div>
-            </div>
-          </form>
+          <FooterContactForm />
         </div>
       </div>
     </footer>

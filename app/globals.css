@@ -976,6 +976,25 @@ body:has(.projects-page) .menu-toggle--active {
   color: #000000;
 }
 
+.footer-form .btn-send:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.footer-form-status {
+  margin: -4px 0 0;
+  color: rgba(235, 229, 218, 0.78);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.footer-form-status--error {
+  color: #e5c796;
+}
+
 .projects-page {
   min-height: 100vh;
   padding: 150px 60px 100px;

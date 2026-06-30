@@ -7,6 +7,12 @@ type ContactPayload = {
   message?: string;
 };
 
+const inquiryRecipients: Record<string, string> = {
+  "GENERAL INQUIRY": "info@janetleedesignstudio.com",
+  "PARTNERS INQUIRY": "partners@janetleedesignstudio.com",
+  "CAREERS INQUIRY": "careers@janetleedesignstudio.com"
+};
+
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function clean(value: unknown) {
@@ -24,10 +30,9 @@ function escapeHtml(value: string) {
 
 export async function POST(request: Request) {
   const resendApiKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.CONTACT_TO_EMAIL;
   const fromEmail = process.env.CONTACT_FROM_EMAIL;
 
-  if (!resendApiKey || !toEmail || !fromEmail) {
+  if (!resendApiKey || !fromEmail) {
     console.error("Contact form email environment variables are not configured.");
     return NextResponse.json({ error: "Email is not configured yet." }, { status: 500 });
   }
@@ -44,6 +49,7 @@ export async function POST(request: Request) {
   const fullName = clean(payload.full_name);
   const emailAddress = clean(payload.email_address);
   const message = clean(payload.message);
+  const recipientEmail = inquiryRecipients[inquiryType] || inquiryRecipients["GENERAL INQUIRY"];
 
   if (!fullName || !emailPattern.test(emailAddress) || !message) {
     return NextResponse.json({ error: "Please complete all required fields." }, { status: 400 });
@@ -54,7 +60,7 @@ export async function POST(request: Request) {
   const safeEmailAddress = escapeHtml(emailAddress);
   const safeMessage = escapeHtml(message).replace(/\n/g, "<br />");
 
-  const response = await fetch("https://api.resend.com/emails", {
+  const notificationResponse = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${resendApiKey}`,
@@ -62,7 +68,7 @@ export async function POST(request: Request) {
     },
     body: JSON.stringify({
       from: fromEmail,
-      to: toEmail.split(",").map((email) => email.trim()).filter(Boolean),
+      to: recipientEmail,
       reply_to: emailAddress,
       subject: `Website ${inquiryType} from ${fullName}`,
       html: `
@@ -76,9 +82,36 @@ export async function POST(request: Request) {
     })
   });
 
-  if (!response.ok) {
-    const error = await response.text();
-    console.error("Resend email failed:", error);
+  if (!notificationResponse.ok) {
+    const error = await notificationResponse.text();
+    console.error("Resend notification email failed:", error);
+    return NextResponse.json({ error: "Unable to send message right now." }, { status: 502 });
+  }
+
+  const receiptResponse = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${resendApiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from: fromEmail,
+      to: emailAddress,
+      reply_to: recipientEmail,
+      subject: "We received your message",
+      html: `
+        <h2>Thank you for contacting Janet Lee Design Studio</h2>
+        <p>Hello ${safeFullName},</p>
+        <p>We received your ${safeInquiryType.toLowerCase()} and will get back to you soon.</p>
+        <p><strong>Your message:</strong></p>
+        <p>${safeMessage}</p>
+      `
+    })
+  });
+
+  if (!receiptResponse.ok) {
+    const error = await receiptResponse.text();
+    console.error("Resend receipt email failed:", error);
     return NextResponse.json({ error: "Unable to send message right now." }, { status: 502 });
   }
 

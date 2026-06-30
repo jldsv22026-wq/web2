@@ -35,11 +35,18 @@ For the footer contact form, create a Resend API key and set:
 
 ```text
 RESEND_API_KEY=your_resend_api_key
-CONTACT_TO_EMAIL=recipient@example.com
 CONTACT_FROM_EMAIL=Website <contact@your-verified-domain.com>
 ```
 
-`CONTACT_FROM_EMAIL` must use a sender/domain verified in Resend.
+`CONTACT_FROM_EMAIL` must use a sender/domain verified in Resend. Inquiry emails are routed by dropdown choice:
+
+```text
+GENERAL INQUIRY -> info@janetleedesignstudio.com
+PARTNERS INQUIRY -> partners@janetleedesignstudio.com
+CAREERS INQUIRY -> careers@janetleedesignstudio.com
+```
+
+The customer also receives a confirmation receipt at the email address they submit.
 
 ## Routes
 

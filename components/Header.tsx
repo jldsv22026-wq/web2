@@ -23,6 +23,7 @@ export function Header({ logoUrl, logoAlt = "Janet Lee Design Studio" }: HeaderP
 
   useEffect(() => {
     const heroSection = document.querySelector<HTMLElement>(".hero-section");
+    const projectsSection = document.querySelector<HTMLElement>("#projects");
 
     if (!heroSection) {
       const frame = window.requestAnimationFrame(() => setShowHeader(true));
@@ -30,8 +31,14 @@ export function Header({ logoUrl, logoAlt = "Janet Lee Design Studio" }: HeaderP
     }
 
     const updateHeaderState = () => {
-      const headerRevealPoint = heroSection.offsetTop + heroSection.offsetHeight - 8;
-      setShowHeader(window.scrollY >= headerRevealPoint);
+      const revealDistance = projectsSection?.offsetTop || heroSection.offsetHeight || window.innerHeight;
+      const progress = Math.min(1, Math.max(0, window.scrollY / Math.max(revealDistance, 1)));
+      const header = document.querySelector<HTMLElement>(".site-header");
+
+      header?.style.setProperty("--header-progress", progress.toString());
+      header?.style.setProperty("--header-border-alpha", (progress * 0.16).toString());
+      header?.style.setProperty("--header-shadow-alpha", (progress * 0.18).toString());
+      setShowHeader(progress > 0.02);
     };
 
     updateHeaderState();

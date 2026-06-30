@@ -393,16 +393,16 @@ body:has(.projects-page) .menu-toggle--active {
 }
 
 .hero-section {
-  --hero-parallax-y: 0px;
   --hero-logo-y: 0px;
   display: grid;
   place-items: center;
   position: relative;
   min-height: 100vh;
   overflow: hidden;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center calc(50% + var(--hero-parallax-y));
+  background-position: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }

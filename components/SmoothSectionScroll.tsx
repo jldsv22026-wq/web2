@@ -34,7 +34,6 @@ export function SmoothSectionScroll() {
       if (heroSection) {
         const heroRect = heroSection.getBoundingClientRect();
         const heroProgress = clamp(-heroRect.top / Math.max(heroRect.height, 1));
-        heroSection.style.setProperty("--hero-parallax-y", `${heroProgress * 120}px`);
         heroSection.style.setProperty("--hero-logo-y", `${heroProgress * -34}px`);
       }
 

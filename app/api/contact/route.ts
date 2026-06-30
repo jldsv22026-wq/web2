@@ -112,8 +112,8 @@ export async function POST(request: Request) {
   if (!receiptResponse.ok) {
     const error = await receiptResponse.text();
     console.error("Resend receipt email failed:", error);
-    return NextResponse.json({ error: "Unable to send message right now." }, { status: 502 });
+    return NextResponse.json({ ok: true, receiptSent: false });
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, receiptSent: true });
 }

@@ -52,7 +52,7 @@ PARTNERS INQUIRY -> partners@janetleedesignstudio.com
 CAREERS INQUIRY -> careers@janetleedesignstudio.com
 ```
 
-The customer also receives a confirmation receipt at the email address they submit.
+The customer also receives a confirmation receipt at the email address they submit when Resend allows that recipient. During demo/testing with Resend's default sender, the internal notification email is treated as the required send and the receipt is best-effort.
 
 ## Routes
 

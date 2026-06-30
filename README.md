@@ -38,7 +38,13 @@ RESEND_API_KEY=your_resend_api_key
 CONTACT_FROM_EMAIL=Website <contact@your-verified-domain.com>
 ```
 
-`CONTACT_FROM_EMAIL` must use a sender/domain verified in Resend. Inquiry emails are routed by dropdown choice:
+`CONTACT_FROM_EMAIL` must use a sender/domain verified in Resend. For the client demo, all inquiry emails route to:
+
+```text
+jldsv22026@gmail.com
+```
+
+Before launch, update `app/api/contact/route.ts` to route by dropdown choice:
 
 ```text
 GENERAL INQUIRY -> info@janetleedesignstudio.com

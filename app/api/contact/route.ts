@@ -8,9 +8,9 @@ type ContactPayload = {
 };
 
 const inquiryRecipients: Record<string, string> = {
-  "GENERAL INQUIRY": "info@janetleedesignstudio.com",
-  "PARTNERS INQUIRY": "partners@janetleedesignstudio.com",
-  "CAREERS INQUIRY": "careers@janetleedesignstudio.com"
+  "GENERAL INQUIRY": "jldsv22026@gmail.com",
+  "PARTNERS INQUIRY": "jldsv22026@gmail.com",
+  "CAREERS INQUIRY": "jldsv22026@gmail.com"
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

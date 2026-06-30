@@ -285,6 +285,7 @@ body:has(.projects-page) .menu-toggle-premium {
 .menu-toggle--active::after,
 .menu-toggle--active:hover::before,
 .menu-toggle--active:hover::after {
+  display: none;
   border-color: transparent;
   background: transparent;
   opacity: 0;
@@ -294,9 +295,9 @@ body:has(.projects-page) .menu-toggle-premium {
   position: fixed;
   inset: 0 0 auto auto !important;
   z-index: 99;
-  width: min(410px, calc(100vw - 96px));
-  height: auto !important;
-  min-height: 320px !important;
+  width: min(360px, calc(100vw - 80px));
+  height: 360px !important;
+  min-height: 0 !important;
   max-height: calc(100vh - 72px);
   overflow: auto;
   background: #1c1e21;
@@ -321,13 +322,13 @@ body:has(.projects-page) .menu-toggle-premium {
   display: grid;
   min-height: 100%;
   align-content: center;
-  padding: 84px 58px 56px;
+  padding: 70px 48px 42px;
 }
 
 .side-nav .menu {
   flex-direction: column;
   align-items: flex-end;
-  gap: 22px;
+  gap: 18px;
 }
 
 .side-nav a {
@@ -335,7 +336,7 @@ body:has(.projects-page) .menu-toggle-premium {
   color: #6f6b62;
   font-size: 30px;
   font-weight: 300;
-  line-height: 0.95;
+  line-height: 1;
   letter-spacing: 0.02em;
   text-align: right;
   text-transform: uppercase;
@@ -376,7 +377,7 @@ body:has(.projects-page) .menu-toggle-premium {
 
 .menu-toggle--active {
   top: 22px;
-  right: clamp(88px, 14vw, 124px);
+  right: 72px;
   transition-delay: 140ms;
 }
 
@@ -1044,13 +1045,13 @@ body:has(.projects-page) .menu-toggle--active {
 
   .side-nav {
     inset: 0 0 auto auto !important;
-    width: min(360px, calc(100vw - 72px));
-    min-height: 310px !important;
-    height: auto !important;
+    width: min(320px, calc(100vw - 56px));
+    height: 330px !important;
+    min-height: 0 !important;
   }
 
   .side-nav-inner {
-    padding: 78px 34px 44px;
+    padding: 64px 30px 38px;
   }
 
   .side-nav a {

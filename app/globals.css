@@ -384,7 +384,7 @@ body:has(.projects-page) .menu-toggle-premium {
 
 .menu-toggle--active {
   top: 22px;
-  right: 72px;
+  right: 38px;
   transition-delay: 140ms;
 }
 
@@ -1009,7 +1009,7 @@ body:has(.projects-page) .menu-toggle--active {
   min-height: 340px;
   margin: 0 -60px 80px;
   overflow: hidden;
-  align-items: end;
+  align-items: start;
   background-image: url("/images/page-header-bg.webp");
   background-position: center;
   background-size: cover;
@@ -1021,64 +1021,43 @@ body:has(.projects-page) .menu-toggle--active {
   background: linear-gradient(90deg, rgba(15, 15, 15, 0.72), rgba(15, 15, 15, 0.22));
 }
 
-.projects-page-hero__inner {
+.filter-container {
   position: relative;
   z-index: 1;
-  width: min(1400px, calc(100% - 120px));
-  margin: 0 auto;
-  padding: 0 0 58px;
-  color: #ffffff;
-}
-
-.projects-page-hero__eyebrow {
-  margin: 0 0 12px;
-  color: var(--gold);
-  font-size: 13px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-}
-
-.projects-page-hero h1 {
-  margin: 0;
-  color: #ffffff;
-  font-size: clamp(56px, 10vw, 132px);
-  font-weight: 300;
-  line-height: 0.9;
-}
-
-.projects-header {
-  margin: 0 0 80px;
-}
-
-.filter-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 14px;
   justify-content: center;
+  width: min(980px, calc(100% - 80px));
+  margin: 0 auto;
+  padding-top: 38px;
 }
 
 .filter-btn {
-  min-width: 180px;
-  padding: 15px 40px;
-  border: 1px solid rgba(51, 51, 51, 0.19);
+  min-width: 198px;
+  min-height: 42px;
+  padding: 13px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.74);
   background: transparent;
-  color: #333333;
+  color: #ffffff;
   cursor: pointer;
-  font-size: 13px;
-  font-weight: 400;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.16em;
+  text-transform: uppercase;
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .filter-btn:hover,
 .filter-btn:focus-visible {
-  border-color: #333333;
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .filter-btn.active {
-  border-color: #232428;
-  background: #232428;
-  color: #ffffff;
+  border-color: #ffffff;
+  background: #ffffff;
+  color: #8f8676;
 }
 
 .projects-list-container {
@@ -1634,7 +1613,7 @@ body:has(.utility-page) .site-header {
   }
 
   .menu-toggle--active {
-    right: 72px;
+    right: 24px;
   }
 
   .about-intro-main,

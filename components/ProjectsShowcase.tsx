@@ -116,7 +116,8 @@ export default function ProjectsShowcase({ projects }: { projects: Project[] }) 
 
   return (
     <>
-      <header className="projects-header">
+      <header className="projects-page-hero">
+        <div className="projects-page-hero__shade" />
         <div className="filter-container" aria-label="Project categories">
           {filterButtons.map((filter) => (
             <button

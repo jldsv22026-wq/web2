@@ -56,7 +56,7 @@ export async function getProjects(options: GetProjectsOptions = {}): Promise<Pro
 
   try {
     const response = await fetch(endpoint, {
-      next: { revalidate: 60 }
+      cache: "no-store"
     });
 
     if (!response.ok) {

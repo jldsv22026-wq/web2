@@ -5,6 +5,8 @@ export const metadata = {
   title: "Projects | Janet Lee Design Studio"
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function ProjectsPage() {
   const projects = await getProjects();
 

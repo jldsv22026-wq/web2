@@ -99,7 +99,7 @@ export function ProjectDashboardClient({ initialProjects }: { initialProjects: P
   );
 
   const refreshProjects = async () => {
-    const response = await fetch("/api/project-dashboard/projects");
+    const response = await fetch("/api/project-dashboard/projects", { cache: "no-store" });
     if (!response.ok) {
       return;
     }

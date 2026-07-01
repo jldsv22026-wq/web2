@@ -7,6 +7,8 @@ export const metadata = {
   title: "Project Dashboard | Janet Lee Design Studio"
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function ProjectDashboardPage() {
   if (!(await isProjectDashboardAuthenticated())) {
     redirect("/project-login");

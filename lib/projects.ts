@@ -46,7 +46,12 @@ export const fallbackProjects: Project[] = [
   }
 ];
 
-export async function getProjects(): Promise<Project[]> {
+type GetProjectsOptions = {
+  includeFallback?: boolean;
+};
+
+export async function getProjects(options: GetProjectsOptions = {}): Promise<Project[]> {
+  const includeFallback = options.includeFallback ?? true;
   const endpoint = `${getWordPressUrl()}/wp-json/janet/v1/projects`;
 
   try {
@@ -60,9 +65,9 @@ export async function getProjects(): Promise<Project[]> {
 
     const data = (await response.json()) as ProjectsResponse;
     const projects = Array.isArray(data.projects) ? data.projects : [];
-    return projects.length > 0 ? projects : fallbackProjects;
+    return projects.length > 0 || !includeFallback ? projects : fallbackProjects;
   } catch (error) {
     console.error("Unable to load WordPress projects", error);
-    return fallbackProjects;
+    return includeFallback ? fallbackProjects : [];
   }
 }

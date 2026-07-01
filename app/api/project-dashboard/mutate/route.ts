@@ -4,6 +4,15 @@ import { isProjectDashboardAuthenticated } from "@/lib/projectAuth";
 
 const allowedActions = new Set(["add_jlds_project", "update_jlds_project", "delete_jlds_project"]);
 
+function getWordPressMutationSecret() {
+  return (
+    process.env.WORDPRESS_MUTATION_SECRET ||
+    process.env.PROJECT_DASHBOARD_SECRET ||
+    process.env.PROJECT_DASHBOARD_PASSWORD ||
+    ""
+  );
+}
+
 export async function POST(request: Request) {
   if (!(await isProjectDashboardAuthenticated())) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
@@ -11,13 +20,19 @@ export async function POST(request: Request) {
 
   const formData = await request.formData();
   const action = String(formData.get("action") || "");
+  const mutationSecret = getWordPressMutationSecret();
 
   if (!allowedActions.has(action)) {
     return NextResponse.json({ message: "Unsupported dashboard action" }, { status: 400 });
   }
 
-  const response = await fetch(`${getWordPressUrl()}/wp-admin/admin-ajax.php`, {
+  if (mutationSecret) {
+    formData.set("jlds_dashboard_secret", mutationSecret);
+  }
+
+  const response = await fetch(`${getWordPressUrl()}/wp-json/janet/v1/projects/mutate`, {
     method: "POST",
+    headers: mutationSecret ? { "x-jlds-dashboard-secret": mutationSecret } : undefined,
     body: formData
   });
 

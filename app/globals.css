@@ -83,7 +83,8 @@ img {
 }
 
 .site-header--visible,
-body:has(.projects-page) .site-header {
+body:has(.projects-page) .site-header,
+body:has(.press-page) .site-header {
   --header-progress: 1;
   --header-border-alpha: 0.16;
   --header-shadow-alpha: 0.18;
@@ -122,7 +123,8 @@ body:has(.projects-page) .site-header {
 }
 
 .site-header--visible .floating-header-logo,
-body:has(.projects-page) .floating-header-logo {
+body:has(.projects-page) .floating-header-logo,
+body:has(.press-page) .floating-header-logo {
   opacity: var(--header-progress);
   pointer-events: auto;
   transform: translateY(0);
@@ -142,7 +144,8 @@ body:has(.projects-page) .floating-header-logo {
 }
 
 .site-header--scrolled .custom-logo-svg,
-body:has(.projects-page) .custom-logo-svg {
+body:has(.projects-page) .custom-logo-svg,
+body:has(.press-page) .custom-logo-svg {
   width: 52px;
   height: 52px;
 }
@@ -190,7 +193,8 @@ body:has(.projects-page) .custom-logo-svg {
 }
 
 .site-header--visible .menu-toggle-premium,
-body:has(.projects-page) .menu-toggle-premium {
+body:has(.projects-page) .menu-toggle-premium,
+body:has(.press-page) .menu-toggle-premium {
   top: calc((var(--site-header-height) - 54px) / 2);
 }
 
@@ -389,7 +393,8 @@ body:has(.projects-page) .menu-toggle-premium {
 }
 
 .site-header--visible .menu-toggle--active,
-body:has(.projects-page) .menu-toggle--active {
+body:has(.projects-page) .menu-toggle--active,
+body:has(.press-page) .menu-toggle--active {
   top: calc((var(--site-header-height) - 54px) / 2);
 }
 
@@ -1003,6 +1008,13 @@ body:has(.projects-page) .menu-toggle--active {
   background: #ffffff;
 }
 
+.press-page {
+  min-height: 100vh;
+  padding: var(--site-header-height) 60px 0;
+  color: var(--ink);
+  background: #ffffff;
+}
+
 .projects-page-hero {
   position: relative;
   display: grid;
@@ -1211,6 +1223,82 @@ body:has(.projects-page) .menu-toggle--active {
   color: #232428;
   font-size: 14px;
   place-items: center;
+}
+
+.press-article {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  color: #8a8a8a;
+}
+
+.press-article__lead {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1fr);
+  gap: clamp(44px, 7vw, 92px);
+  align-items: start;
+}
+
+.press-article__copy h1 {
+  margin: 0 0 18px;
+  color: #5b5b5b;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+.press-article__copy p,
+.press-article__body {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.92;
+}
+
+.press-article__image-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.press-article__image {
+  position: relative;
+  overflow: hidden;
+  background: #d7d7d7;
+}
+
+.press-article__image img {
+  object-fit: cover;
+}
+
+.press-article__image--portrait {
+  aspect-ratio: 0.78;
+}
+
+.press-article__body {
+  margin-top: 62px;
+}
+
+.press-article__image--wide {
+  width: 100%;
+  margin-top: 56px;
+  aspect-ratio: 2.34;
+}
+
+.press-partners {
+  position: relative;
+  margin-top: 72px;
+}
+
+.press-partners__mark {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  width: 44px;
+  height: 34px;
+  border-top: 1px solid #a8a8a8;
+  border-left: 1px solid #a8a8a8;
+  transform: translateX(-50%) rotate(45deg);
+  transform-origin: center;
 }
 
 .utility-page ~ .site-footer,
@@ -1732,7 +1820,8 @@ body:has(.utility-page) .site-header {
   .company-section,
   .what-we-do-section,
   .site-footer,
-  .projects-page {
+  .projects-page,
+  .press-page {
     padding-left: 22px;
     padding-right: 22px;
   }
@@ -1742,6 +1831,10 @@ body:has(.utility-page) .site-header {
   }
 
   .projects-page {
+    padding-top: 110px;
+  }
+
+  .press-page {
     padding-top: 110px;
   }
 
@@ -1803,6 +1896,10 @@ body:has(.utility-page) .site-header {
     padding: var(--site-header-height) 20px 0;
   }
 
+  .press-page {
+    padding: var(--site-header-height) 20px 0;
+  }
+
   .projects-page-hero {
     margin-right: -20px;
     margin-bottom: 58px;
@@ -1823,6 +1920,14 @@ body:has(.utility-page) .site-header {
   .projects-partners__logos {
     flex-wrap: wrap;
     gap: 28px;
+  }
+
+  .press-article__lead {
+    grid-template-columns: 1fr;
+  }
+
+  .press-article__image--wide {
+    aspect-ratio: 1.6;
   }
 
   .project-inner,

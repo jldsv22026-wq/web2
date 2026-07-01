@@ -6,8 +6,8 @@ import { MouseEvent, useEffect, useState } from "react";
 
 const navItems = [
   { label: "HOME", href: "/#" },
-  { label: "PROJECTS", href: "/#projects" },
-  { label: "PRESS", href: "/projects" },
+  { label: "PROJECTS", href: "/projects" },
+  { label: "PRESS", href: "/press" },
   { label: "ABOUT US", href: "/#company" },
   { label: "CONTACT US", href: "/#colophon" }
 ];

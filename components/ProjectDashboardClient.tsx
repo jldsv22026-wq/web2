@@ -7,8 +7,8 @@ import type { Project } from "@/lib/projects";
 const categoryOptions = [
   { label: "RESIDENTIAL", value: "residential" },
   { label: "COMMERCIAL", value: "commercial" },
-  { label: "CONDOMINIUM", value: "condominium" },
-  { label: "REAL ESTATE", value: "realestate" }
+  { label: "RENOVATION", value: "renovation" },
+  { label: "POP-UPS", value: "popups" }
 ];
 
 type PreviewImage = {

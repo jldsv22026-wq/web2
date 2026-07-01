@@ -1,15 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import type { Project, ProjectImage } from "@/lib/projects";
 
 const defaultFilters = [
-  { label: "ALL PROJECTS", value: "all" },
   { label: "RESIDENTIAL", value: "residential" },
   { label: "COMMERCIAL", value: "commercial" },
-  { label: "CONDOMINIUM", value: "condominium" },
-  { label: "REAL ESTATE", value: "realestate" }
+  { label: "RENOVATION", value: "renovation" },
+  { label: "POP-UPS", value: "popups" }
 ];
 
 function normalizeCategory(category: string) {
@@ -89,29 +88,10 @@ function ProjectEntry({ project, index }: { project: Project; index: number }) {
 }
 
 export default function ProjectsShowcase({ projects }: { projects: Project[] }) {
-  const [activeFilter, setActiveFilter] = useState("all");
-
-  const filterButtons = useMemo(() => {
-    const seen = new Set(defaultFilters.map((filter) => filter.value));
-    const dynamicFilters = projects
-      .map((project) => ({
-        label: project.categoryLabel || project.category.toUpperCase(),
-        value: normalizeCategory(project.category)
-      }))
-      .filter((filter) => {
-        if (!filter.value || seen.has(filter.value)) {
-          return false;
-        }
-
-        seen.add(filter.value);
-        return true;
-      });
-
-    return [...defaultFilters, ...dynamicFilters];
-  }, [projects]);
+  const [activeFilter, setActiveFilter] = useState("residential");
 
   const visibleProjects = projects.filter((project) => {
-    return activeFilter === "all" || normalizeCategory(project.category) === activeFilter;
+    return normalizeCategory(project.category) === activeFilter;
   });
 
   return (
@@ -119,7 +99,7 @@ export default function ProjectsShowcase({ projects }: { projects: Project[] }) 
       <header className="projects-page-hero">
         <div className="projects-page-hero__shade" />
         <div className="filter-container" aria-label="Project categories">
-          {filterButtons.map((filter) => (
+          {defaultFilters.map((filter) => (
             <button
               className={`filter-btn${activeFilter === filter.value ? " active" : ""}`}
               key={filter.value}

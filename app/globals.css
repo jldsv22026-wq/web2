@@ -1006,19 +1006,14 @@ body:has(.projects-page) .menu-toggle--active {
 .projects-page-hero {
   position: relative;
   display: grid;
-  min-height: 340px;
+  min-height: 282px;
   margin: 0 -60px 80px;
   overflow: hidden;
   align-items: start;
   background-image: url("/images/page-header-bg.webp");
-  background-position: center;
-  background-size: cover;
-}
-
-.projects-page-hero__shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(15, 15, 15, 0.72), rgba(15, 15, 15, 0.22));
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .filter-container {

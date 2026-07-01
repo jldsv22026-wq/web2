@@ -384,7 +384,7 @@ body:has(.projects-page) .menu-toggle-premium {
 
 .menu-toggle--active {
   top: 22px;
-  right: 38px;
+  right: 25px;
   transition-delay: 140ms;
 }
 
@@ -1613,7 +1613,7 @@ body:has(.utility-page) .site-header {
   }
 
   .menu-toggle--active {
-    right: 24px;
+    right: 15px;
   }
 
   .about-intro-main,

@@ -101,11 +101,13 @@ export function ProjectDashboardClient({ initialProjects }: { initialProjects: P
   const refreshProjects = async () => {
     const response = await fetch("/api/project-dashboard/projects", { cache: "no-store" });
     if (!response.ok) {
-      return;
+      return null;
     }
 
     const data = (await response.json()) as { projects?: Project[] };
-    setProjects(Array.isArray(data.projects) ? data.projects : []);
+    const nextProjects = Array.isArray(data.projects) ? data.projects : [];
+    setProjects(nextProjects);
+    return nextProjects;
   };
 
   const handleAddFiles = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -132,9 +134,8 @@ export function ProjectDashboardClient({ initialProjects }: { initialProjects: P
     }
 
     setStatus("Success.");
-    await refreshProjects();
-    router.refresh();
-    return true;
+    const nextProjects = await refreshProjects();
+    return nextProjects ?? true;
   };
 
   const handleAddProject = async (event: FormEvent<HTMLFormElement>) => {
@@ -147,8 +148,8 @@ export function ProjectDashboardClient({ initialProjects }: { initialProjects: P
       formData.append("project_images[]", preview.file);
     });
 
-    const ok = await submitForm(formData);
-    if (ok) {
+    const result = await submitForm(formData);
+    if (result) {
       event.currentTarget.reset();
       setAddPreviews([]);
       if (addFileRef.current) {
@@ -199,10 +200,13 @@ export function ProjectDashboardClient({ initialProjects }: { initialProjects: P
       formData.append("new_project_images[]", preview.file);
     });
 
-    const ok = await submitForm(formData);
-    if (ok) {
+    const result = await submitForm(formData);
+    if (result) {
+      const refreshedProjects = Array.isArray(result) ? result : projects;
+      const refreshedProject = refreshedProjects.find((project) => String(project.id) === editProjectId);
       setReplaceImages({});
       setNewEditImages([]);
+      setEditImages(refreshedProject?.images.map((image) => image.url) ?? []);
     }
   };
 

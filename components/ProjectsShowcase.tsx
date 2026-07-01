@@ -19,6 +19,30 @@ function imageNeedsUnoptimized(image: ProjectImage) {
   return image.url.toLowerCase().split("?")[0].endsWith(".svg");
 }
 
+function isValidFilter(value: string | null) {
+  return Boolean(value && defaultFilters.some((filter) => filter.value === value));
+}
+
+function getInitialFilter() {
+  if (typeof window === "undefined") {
+    return "residential";
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const categoryFromUrl = params.get("category");
+  const savedCategory = window.localStorage.getItem("jlds-project-category");
+
+  if (isValidFilter(categoryFromUrl)) {
+    return categoryFromUrl as string;
+  }
+
+  if (isValidFilter(savedCategory)) {
+    return savedCategory as string;
+  }
+
+  return "residential";
+}
+
 function ProjectEntry({ project, index }: { project: Project; index: number }) {
   const [activeImage, setActiveImage] = useState(project.images[0] ?? null);
   const thumbnails = [...project.images.slice(0, 6)];
@@ -88,7 +112,16 @@ function ProjectEntry({ project, index }: { project: Project; index: number }) {
 }
 
 export default function ProjectsShowcase({ projects }: { projects: Project[] }) {
-  const [activeFilter, setActiveFilter] = useState("residential");
+  const [activeFilter, setActiveFilter] = useState(getInitialFilter);
+
+  const selectFilter = (value: string) => {
+    setActiveFilter(value);
+    window.localStorage.setItem("jlds-project-category", value);
+
+    const url = new URL(window.location.href);
+    url.searchParams.set("category", value);
+    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  };
 
   const visibleProjects = projects.filter((project) => {
     return normalizeCategory(project.category) === activeFilter;
@@ -102,7 +135,7 @@ export default function ProjectsShowcase({ projects }: { projects: Project[] }) 
             <button
               className={`filter-btn${activeFilter === filter.value ? " active" : ""}`}
               key={filter.value}
-              onClick={() => setActiveFilter(filter.value)}
+              onClick={() => selectFilter(filter.value)}
               type="button"
             >
               {filter.label}

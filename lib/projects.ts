@@ -20,6 +20,32 @@ type ProjectsResponse = {
   count: number;
 };
 
+export const fallbackProjects: Project[] = [
+  {
+    id: 9001,
+    category: "commercial",
+    categoryLabel: "COMMERCIAL",
+    title: "Tea Authority",
+    description:
+      "Design firm that specializes in space planning and creating beautiful, functional spaces that reflect our clients' unique style. Our team of experienced and talented designers has a deep understanding of the latest trends and",
+    images: [
+      { url: "/images/projects/tea-1.png", alt: "Tea Authority interior" },
+      { url: "/images/projects/tea-2.png", alt: "Tea Authority dining interior" }
+    ],
+    createdAt: null
+  },
+  {
+    id: 9002,
+    category: "residential",
+    categoryLabel: "RESIDENTIAL",
+    title: "Dan's Deli",
+    description:
+      "Design firm that specializes in space planning and creating beautiful, functional spaces that reflect our clients' unique style. Our team of experienced and talented designers has a deep understanding of the latest trends and",
+    images: [{ url: "/images/projects/dan.png", alt: "Dan's Deli interior" }],
+    createdAt: null
+  }
+];
+
 export async function getProjects(): Promise<Project[]> {
   const endpoint = `${getWordPressUrl()}/wp-json/janet/v1/projects`;
 
@@ -33,9 +59,10 @@ export async function getProjects(): Promise<Project[]> {
     }
 
     const data = (await response.json()) as ProjectsResponse;
-    return Array.isArray(data.projects) ? data.projects : [];
+    const projects = Array.isArray(data.projects) ? data.projects : [];
+    return projects.length > 0 ? projects : fallbackProjects;
   } catch (error) {
     console.error("Unable to load WordPress projects", error);
-    return [];
+    return fallbackProjects;
   }
 }

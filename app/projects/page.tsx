@@ -10,6 +10,14 @@ export default async function ProjectsPage() {
 
   return (
     <main className="projects-page">
+      <section className="projects-page-hero" aria-labelledby="projects-page-title">
+        <div className="projects-page-hero__shade" />
+        <div className="projects-page-hero__inner">
+          <p className="projects-page-hero__eyebrow">Portfolio</p>
+          <h1 id="projects-page-title">Projects</h1>
+        </div>
+      </section>
+
       {projects.length > 0 ? (
         <ProjectsShowcase projects={projects} />
       ) : (

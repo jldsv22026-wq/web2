@@ -16,6 +16,22 @@ type PreviewImage = {
   src: string;
 };
 
+function getStatusMessage(data: unknown, fallback: string) {
+  if (!data || typeof data !== "object") {
+    return fallback;
+  }
+
+  const payload = data as { data?: unknown; message?: unknown; error?: unknown };
+
+  for (const value of [payload.data, payload.message, payload.error]) {
+    if (typeof value === "string" && value.trim()) {
+      return value;
+    }
+  }
+
+  return fallback;
+}
+
 function trimDescription(value: string) {
   const words = value.split(/\s+/).filter(Boolean);
   return words.length > 10 ? `${words.slice(0, 10).join(" ")}...` : value;
@@ -43,16 +59,21 @@ async function watermarkFile(file: File) {
     element.src = "/images/hero-logo.png";
   });
 
+  const maxDimension = 1800;
+  const scale = Math.min(1, maxDimension / Math.max(image.naturalWidth, image.naturalHeight));
+  const outputWidth = Math.max(1, Math.round(image.naturalWidth * scale));
+  const outputHeight = Math.max(1, Math.round(image.naturalHeight * scale));
+
   const canvas = document.createElement("canvas");
-  canvas.width = image.naturalWidth;
-  canvas.height = image.naturalHeight;
+  canvas.width = outputWidth;
+  canvas.height = outputHeight;
 
   const context = canvas.getContext("2d");
   if (!context) {
     return file;
   }
 
-  context.drawImage(image, 0, 0);
+  context.drawImage(image, 0, 0, outputWidth, outputHeight);
 
   const targetWidth = Math.max(140, Math.min(canvas.width * 0.2, 240));
   const targetHeight = targetWidth * (logo.naturalHeight / logo.naturalWidth);
@@ -61,7 +82,7 @@ async function watermarkFile(file: File) {
   context.globalAlpha = 0.38;
   context.drawImage(logo, margin, canvas.height - targetHeight - margin, targetWidth, targetHeight);
 
-  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.9));
+  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.78));
   if (!blob) {
     return file;
   }
@@ -111,31 +132,42 @@ export function ProjectDashboardClient({ initialProjects }: { initialProjects: P
   };
 
   const handleAddFiles = async (event: ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(event.target.files || []).slice(0, 6);
-    const watermarked = await Promise.all(files.map((file) => watermarkFile(file).then(previewFile)));
-    setAddPreviews(watermarked);
+    try {
+      const files = Array.from(event.target.files || []).slice(0, 6);
+      const watermarked = await Promise.all(files.map((file) => watermarkFile(file).then(previewFile)));
+      setAddPreviews(watermarked);
+      setStatus("");
+    } catch {
+      setStatus("Unable to prepare the selected image. Please try a smaller image.");
+      event.target.value = "";
+    }
   };
 
   const submitForm = async (formData: FormData) => {
     setStatus("");
     setIsSaving(true);
 
-    const response = await fetch("/api/project-dashboard/mutate", {
-      method: "POST",
-      body: formData
-    });
-    const data = await response.json().catch(() => ({}));
+    try {
+      const response = await fetch("/api/project-dashboard/mutate", {
+        method: "POST",
+        body: formData
+      });
+      const data = (await response.json().catch(() => ({}))) as unknown;
 
-    setIsSaving(false);
+      if (!response.ok || (typeof data === "object" && data !== null && "success" in data && data.success === false)) {
+        setStatus(getStatusMessage(data, "Unable to save project."));
+        return false;
+      }
 
-    if (!response.ok || data.success === false) {
-      setStatus(data.data || data.message || "Unable to save project.");
+      setStatus("Success.");
+      const nextProjects = await refreshProjects();
+      return nextProjects ?? true;
+    } catch {
+      setStatus("Upload failed before it reached WordPress. Please try a smaller image or fewer images.");
       return false;
+    } finally {
+      setIsSaving(false);
     }
-
-    setStatus("Success.");
-    const nextProjects = await refreshProjects();
-    return nextProjects ?? true;
   };
 
   const handleAddProject = async (event: FormEvent<HTMLFormElement>) => {
@@ -168,11 +200,17 @@ export function ProjectDashboardClient({ initialProjects }: { initialProjects: P
   };
 
   const handleEditImageAdd = async (event: ChangeEvent<HTMLInputElement>) => {
-    const openSlots = Math.max(0, 6 - editImages.length - newEditImages.length);
-    const files = Array.from(event.target.files || []).slice(0, openSlots);
-    const watermarked = await Promise.all(files.map((file) => watermarkFile(file).then(previewFile)));
-    setNewEditImages((current) => [...current, ...watermarked]);
-    event.target.value = "";
+    try {
+      const openSlots = Math.max(0, 6 - editImages.length - newEditImages.length);
+      const files = Array.from(event.target.files || []).slice(0, openSlots);
+      const watermarked = await Promise.all(files.map((file) => watermarkFile(file).then(previewFile)));
+      setNewEditImages((current) => [...current, ...watermarked]);
+      setStatus("");
+      event.target.value = "";
+    } catch {
+      setStatus("Unable to prepare the selected image. Please try a smaller image.");
+      event.target.value = "";
+    }
   };
 
   const handleReplaceImage = async (index: number, event: ChangeEvent<HTMLInputElement>) => {
@@ -181,8 +219,14 @@ export function ProjectDashboardClient({ initialProjects }: { initialProjects: P
       return;
     }
 
-    const watermarked = await watermarkFile(file).then(previewFile);
-    setReplaceImages((current) => ({ ...current, [index]: watermarked }));
+    try {
+      const watermarked = await watermarkFile(file).then(previewFile);
+      setReplaceImages((current) => ({ ...current, [index]: watermarked }));
+      setStatus("");
+    } catch {
+      setStatus("Unable to prepare the selected image. Please try a smaller image.");
+      event.target.value = "";
+    }
   };
 
   const handleEditProject = async (event: FormEvent<HTMLFormElement>) => {

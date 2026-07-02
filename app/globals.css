@@ -696,7 +696,7 @@ body:has(.press-page) .menu-toggle--active {
   min-height: 100vh;
   display: grid;
   align-items: start;
-  padding: calc(var(--site-header-height) + 38px) 0 64px;
+  padding: calc(var(--site-header-height) + 38px) 0;
   background: #ffffff url("/images/company-bg3.webp") center / cover no-repeat;
   color: var(--ink);
   scroll-snap-align: start;
@@ -1862,7 +1862,7 @@ body:has(.utility-page) .site-header {
 
   .company-section {
     padding-top: 110px;
-    padding-bottom: 90px;
+    padding-bottom: 110px;
   }
 
   .company-section__inner {

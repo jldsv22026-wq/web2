@@ -64,6 +64,8 @@ export default async function Home() {
       <section id="company" className="company-section">
         <div className="company-section__inner">
           <div className="company-section__content reveal-on-scroll">
+            <h2 className="project-entry-title company-section__title">About us</h2>
+
             <div className="company-section__copy">
               <p>
                 Our design philosophy is inspired by the way water flows naturally to create rivers. Just as

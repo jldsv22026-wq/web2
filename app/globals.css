@@ -186,7 +186,7 @@ body:has(.press-page) .custom-logo-svg {
   border: 0;
   background: transparent;
   cursor: pointer;
-  opacity: max(0.35, var(--header-progress));
+  opacity: 1;
   pointer-events: auto;
   place-items: center;
   transition: opacity 220ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -694,8 +694,8 @@ body:has(.press-page) .menu-toggle--active {
   display: grid;
   align-items: start;
   padding: calc(var(--site-header-height) + 38px) 0 64px;
-  background: #232428;
-  color: var(--paper);
+  background: #ffffff;
+  color: var(--ink);
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
@@ -717,10 +717,14 @@ body:has(.press-page) .menu-toggle--active {
   max-width: 455px;
 }
 
+.company-section__title {
+  margin-bottom: 2px;
+}
+
 .company-section__copy {
   display: grid;
   gap: 28px;
-  color: rgba(235, 229, 218, 0.84);
+  color: rgba(21, 21, 21, 0.78);
   font-size: 20px;
   font-weight: 300;
   line-height: 1.55;
@@ -735,7 +739,7 @@ body:has(.press-page) .menu-toggle--active {
   gap: 8px;
   margin: 0;
   padding: 0 0 0 15px;
-  color: rgba(235, 229, 218, 0.86);
+  color: rgba(21, 21, 21, 0.8);
   font-size: 16px;
   font-weight: 300;
   line-height: 1.35;
@@ -769,7 +773,7 @@ body:has(.press-page) .menu-toggle--active {
   grid-template-columns: minmax(0, 1fr) max-content;
   gap: clamp(34px, 6vw, 92px);
   align-items: end;
-  color: rgba(235, 229, 218, 0.74);
+  color: rgba(21, 21, 21, 0.68);
   font-size: 14px;
   font-weight: 300;
   line-height: 1.8;

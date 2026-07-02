@@ -1758,6 +1758,7 @@ body:has(.utility-page) .site-header {
 
   .company-section__inner {
     width: min(760px, calc(100% - 48px));
+    margin-left: 0;
   }
 
   .site-footer {
@@ -1864,6 +1865,11 @@ body:has(.utility-page) .site-header {
   .company-section__inner {
     align-items: start;
     gap: 30px;
+    width: 100%;
+  }
+
+  .company-section__content {
+    max-width: min(100%, 455px);
   }
 
   .company-section__copy {

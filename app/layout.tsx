@@ -34,7 +34,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={lato.variable}>
+      <body id="top" className={lato.variable}>
         <Header logoUrl={headerLogoUrl} logoAlt={headerLogo?.alt || "Janet Lee Design Studio"} />
         <SmoothSectionScroll />
         {children}

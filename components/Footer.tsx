@@ -36,6 +36,10 @@ function FacebookIcon() {
 export function Footer({ logoUrl, logoAlt = "Janet Lee Design Studio" }: FooterProps) {
   return (
     <footer id="colophon" className="site-footer">
+      <a className="back-to-top-arrow" href="#top" aria-label="Back to top">
+        <span />
+      </a>
+
       <div className="footer-container">
         <div className="footer-logo-panel reveal-on-scroll">
           {/* eslint-disable-next-line @next/next/no-img-element */}

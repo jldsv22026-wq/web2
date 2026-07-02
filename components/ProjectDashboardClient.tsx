@@ -133,10 +133,18 @@ export function ProjectDashboardClient({ initialProjects }: { initialProjects: P
 
   const handleAddFiles = async (event: ChangeEvent<HTMLInputElement>) => {
     try {
-      const files = Array.from(event.target.files || []).slice(0, 6);
+      const openSlots = Math.max(0, 6 - addPreviews.length);
+      const files = Array.from(event.target.files || []).slice(0, openSlots);
+      if (files.length === 0) {
+        setStatus(addPreviews.length >= 6 ? "Maximum of 6 pictures reached." : "");
+        event.target.value = "";
+        return;
+      }
+
       const watermarked = await Promise.all(files.map((file) => watermarkFile(file).then(previewFile)));
-      setAddPreviews(watermarked);
-      setStatus("");
+      setAddPreviews((current) => [...current, ...watermarked].slice(0, 6));
+      setStatus(addPreviews.length + watermarked.length >= 6 ? "Maximum of 6 pictures reached." : "");
+      event.target.value = "";
     } catch {
       setStatus("Unable to prepare the selected image. Please try a smaller image.");
       event.target.value = "";
@@ -326,6 +334,7 @@ export function ProjectDashboardClient({ initialProjects }: { initialProjects: P
                       accept="image/*"
                       ref={addFileRef}
                       type="file"
+                      disabled={addPreviews.length >= 6 || isSaving}
                       onChange={handleAddFiles}
                     />
                     <button className="btn-primary" disabled={isSaving} type="submit">

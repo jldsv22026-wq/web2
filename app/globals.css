@@ -847,12 +847,36 @@ body:has(.press-page) .menu-toggle--active {
 }
 
 .site-footer {
+  position: relative;
   min-height: 516px;
   background: #000000;
   padding: 116px 60px 74px;
   border-top: 1px solid rgba(229, 199, 150, 0.18);
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+.back-to-top-arrow {
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  z-index: 2;
+  width: 72px;
+  height: 42px;
+  border: 0;
+  background: transparent;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.back-to-top-arrow span {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: auto;
+  border-right: 1px solid rgba(229, 199, 150, 0.64);
+  border-bottom: 1px solid rgba(229, 199, 150, 0.64);
+  transform: rotate(225deg);
 }
 
 .footer-container {

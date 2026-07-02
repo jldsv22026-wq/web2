@@ -12,6 +12,10 @@ export function FooterContactForm() {
     event.preventDefault();
 
     const form = event.currentTarget;
+    if (!form.reportValidity()) {
+      return;
+    }
+
     const formData = new FormData(form);
 
     setSubmitState("sending");
@@ -73,6 +77,14 @@ export function FooterContactForm() {
           ) : null}
         </div>
       </div>
+      <label className="footer-privacy-consent">
+        <input type="checkbox" name="privacy_consent" required />
+        <span className="footer-privacy-box" aria-hidden="true" />
+        <span>
+          I agree to the Privacy Policy and consent to having this website store my submitted information so
+          they can respond to my inquiry.
+        </span>
+      </label>
     </form>
   );
 }

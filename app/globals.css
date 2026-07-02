@@ -694,7 +694,7 @@ body:has(.press-page) .menu-toggle--active {
   display: grid;
   align-items: start;
   padding: calc(var(--site-header-height) + 38px) 0 64px;
-  background: #ffffff;
+  background: #ffffff url("/images/company-bg.webp") center / cover no-repeat;
   color: var(--ink);
   scroll-snap-align: start;
   scroll-snap-stop: always;

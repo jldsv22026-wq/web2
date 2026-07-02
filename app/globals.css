@@ -1005,8 +1005,8 @@ body:has(.press-page) .menu-toggle--active {
 
 .footer-privacy-consent {
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
-  gap: 14px;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 12px;
   align-items: center;
   margin-top: 30px;
   color: rgba(235, 229, 218, 0.84);
@@ -1024,16 +1024,16 @@ body:has(.press-page) .menu-toggle--active {
 
 .footer-privacy-box {
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 24px;
+  height: 24px;
   border: 1px solid #918780;
   place-items: center;
 }
 
 .footer-privacy-box::after {
   content: "";
-  width: 8px;
-  height: 15px;
+  width: 6px;
+  height: 11px;
   border-right: 2px solid #ffffff;
   border-bottom: 2px solid #ffffff;
   opacity: 0;

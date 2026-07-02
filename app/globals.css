@@ -694,7 +694,7 @@ body:has(.press-page) .menu-toggle--active {
   display: grid;
   align-items: start;
   padding: calc(var(--site-header-height) + 38px) 0 64px;
-  background: #ffffff url("/images/company-bg.webp") center / cover no-repeat;
+  background: #ffffff url("/images/company-bg2.webp") center / cover no-repeat;
   color: var(--ink);
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -702,8 +702,7 @@ body:has(.press-page) .menu-toggle--active {
 
 .company-section__inner {
   display: grid;
-  grid-template-columns: minmax(380px, 455px) minmax(0, 900px);
-  gap: clamp(42px, 4vw, 72px);
+  grid-template-columns: minmax(380px, 455px);
   align-items: start;
   width: min(1410px, calc(100% - 220px));
   margin-right: auto;
@@ -783,20 +782,6 @@ body:has(.press-page) .menu-toggle--active {
 .company-section__details p {
   margin: 0;
   font-style: normal;
-}
-
-.company-section__image-wrap {
-  width: 100%;
-  max-width: 900px;
-  padding-top: 40px;
-  justify-self: end;
-}
-
-.company-section__image {
-  display: block;
-  width: auto;
-  max-width: 100%;
-  height: auto;
 }
 
 .what-we-do-section {
@@ -1788,10 +1773,6 @@ body:has(.utility-page) .site-header {
 
   .footer-logo-panel {
     width: min(var(--footer-logo-size), 100%);
-  }
-
-  .company-section__image-wrap {
-    order: -1;
   }
 
   .projects-accordion {

@@ -5,7 +5,6 @@ export default async function Home() {
   const galleryImages = await getGalleryImages();
   const heroLogo = findGalleryImageByFilename(galleryImages, "hero-logo.png");
   const heroBackground = findGalleryImageByFilename(galleryImages, "hero-section-bg.webp");
-  const companyImage = findGalleryImageByFilename(galleryImages, "ladies-pic.webp");
   const projectTiles = [
     {
       key: "residential",
@@ -108,17 +107,6 @@ export default async function Home() {
                 Monday to Friday 9am to 6pm
               </p>
             </div>
-          </div>
-
-          <div className="company-section__image-wrap reveal-on-scroll reveal-delay-1">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={companyImage?.url || "/images/ladies-pic.webp"}
-              alt={companyImage?.alt || "Janet Lee Design Studio team"}
-              width={companyImage?.width || 991}
-              height={companyImage?.height || 503}
-              className="company-section__image"
-            />
           </div>
         </div>
         <a className="scroll-down-arrow section-scroll-arrow" href="#colophon" aria-label="Scroll to footer">

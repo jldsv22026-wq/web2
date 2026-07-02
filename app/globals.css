@@ -19,6 +19,7 @@
 }
 
 html {
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: none;
   scroll-padding-top: 0;
@@ -26,6 +27,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: hidden;
   color: var(--paper);
   background: var(--charcoal);
   font-family: var(--font-lato), Lato, Arial, Helvetica, sans-serif;
@@ -309,7 +311,8 @@ body:has(.press-page) .menu-toggle-premium {
   height: 360px !important;
   min-height: 0 !important;
   max-height: calc(100vh - 72px);
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: #1c1e21;
   border: 0;
   box-shadow: -28px 0 70px rgba(0, 0, 0, 0.34);
@@ -694,7 +697,7 @@ body:has(.press-page) .menu-toggle--active {
   display: grid;
   align-items: start;
   padding: calc(var(--site-header-height) + 38px) 0 64px;
-  background: #ffffff url("/images/company-bg2.webp") center / cover no-repeat;
+  background: #ffffff url("/images/company-bg3.webp") center / cover no-repeat;
   color: var(--ink);
   scroll-snap-align: start;
   scroll-snap-stop: always;

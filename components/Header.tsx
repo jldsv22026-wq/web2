@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MouseEvent, useEffect, useState } from "react";
+import { FocusEvent, MouseEvent, useEffect, useRef, useState } from "react";
 
 const navItems = [
   { label: "HOME", href: "/#" },
@@ -21,6 +21,30 @@ export function Header({ logoUrl, logoAlt = "Janet Lee Design Studio" }: HeaderP
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
+  const closeTimerRef = useRef<number | null>(null);
+
+  const clearCloseTimer = () => {
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
+
+  const openMenu = () => {
+    clearCloseTimer();
+    setIsOpen(true);
+  };
+
+  const closeMenu = () => {
+    clearCloseTimer();
+    closeTimerRef.current = window.setTimeout(() => setIsOpen(false), 120);
+  };
+
+  const closeMenuOnBlur = (event: FocusEvent<HTMLElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+      closeMenu();
+    }
+  };
 
   const scrollHome = (event: MouseEvent<HTMLAnchorElement>) => {
     setIsOpen(false);
@@ -57,6 +81,7 @@ export function Header({ logoUrl, logoAlt = "Janet Lee Design Studio" }: HeaderP
     window.addEventListener("resize", updateHeaderState);
 
     return () => {
+      clearCloseTimer();
       window.removeEventListener("scroll", updateHeaderState);
       window.removeEventListener("resize", updateHeaderState);
     };
@@ -77,14 +102,25 @@ export function Header({ logoUrl, logoAlt = "Janet Lee Design Studio" }: HeaderP
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-controls="side-navigation"
           aria-expanded={isOpen}
-          onClick={() => setIsOpen((value) => !value)}
+          onBlur={closeMenuOnBlur}
+          onClick={openMenu}
+          onFocus={openMenu}
+          onMouseEnter={openMenu}
+          onMouseLeave={closeMenu}
         >
           <span className="bar bar-1" />
           <span className="bar bar-2" />
           <span className="bar bar-3" />
         </button>
 
-        <div id="side-navigation" className={`side-nav ${isOpen ? "side-nav--open" : ""}`}>
+        <div
+          id="side-navigation"
+          className={`side-nav ${isOpen ? "side-nav--open" : ""}`}
+          onBlur={closeMenuOnBlur}
+          onFocus={openMenu}
+          onMouseEnter={openMenu}
+          onMouseLeave={closeMenu}
+        >
           <div className="side-nav-inner">
             <ul className="menu">
               {navItems.map((item) => (
